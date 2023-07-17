@@ -1,4 +1,3 @@
-
 const PLAYER_ATTACK_VALUE = 7;
 const MONSTER_ATTACK_VALUE = 9;
 const STRONG_ATTACK_VALUE = 15;
@@ -158,14 +157,14 @@ function healPlayerHandler() {
 	} else {
 		healValue = HEAL_VALUE;
 	}
+	increasePlayerHealth(HEAL_VALUE);
+	currentPlayerHealth += healValue;
 	writeToLog(
 		LOG_EVENT_PLAYER_HEAL,
 		healValue,
 		currentMonsterHealth,
 		currentPlayerHealth
 	);
-	increasePlayerHealth(HEAL_VALUE);
-	currentPlayerHealth += HEAL_VALUE;
 	attackAction();
 }
 function printLogHandler() {
