@@ -70,7 +70,7 @@ function writeToLog(event, value, monsterHealth, playerHealth) {
 			break;
 		default:
 			break;
-	// }
+	 }
 	// if (event === LOG_EVENT_PLAYER_ATTACK) {
 	// 	logEntry = {
 	// 		event: event,
