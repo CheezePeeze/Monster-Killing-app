@@ -10,11 +10,27 @@ const LOG_EVENT_MONSTER_ATTACK = "MONSTER_ATTACK";
 const LOG_EVENT_PLAYER_HEAL = "PLAYER_HEAL";
 const LOG_EVENT_GAME_OVER = "GAME_OVER";
 
-let dynamicHealthBar = prompt("enter the desirable number of Health", "100");
-let basicHealthBar = parseInt(dynamicHealthBar);
-if (isNaN(basicHealthBar) || basicHealthBar < 0) {
-	basicHealthBar = 120;
+function getBasicHealthBar() {
+	const dynamicHealthBar = prompt(
+		"enter the desirable number of Health",
+		"100"
+	);
+	const parsedValue = parseInt(dynamicHealthBar);
+	if (isNaN(parsedValue) || parsedValue < 0) {
+		throw { message: "Invalid user input, not a number!" };
+	}
+	return parsedValue;
 }
+
+let basicHealthBar;
+
+try {
+	basicHealthBar = getBasicHealthBar();
+} catch (error) {
+	console.log(error);
+	basicHealthBar = 100;
+} 
+
 let currentMonsterHealth = basicHealthBar;
 let currentPlayerHealth = basicHealthBar;
 let hasBonusLife = true;
@@ -265,3 +281,9 @@ attackBtn.addEventListener("click", monsterAttackHandler);
 strongAttackBtn.addEventListener("click", strongMonsterAttackHandler);
 healBtn.addEventListener("click", healPlayerHandler);
 logBtn.addEventListener("click", printLogHandler);
+
+function squareSum(numbers) {
+	let sum = numbers * numbers;
+	return sum;
+}
+console.log(squareSum(2, 3));
