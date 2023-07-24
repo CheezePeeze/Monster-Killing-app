@@ -19,6 +19,7 @@ let currentMonsterHealth = basicHealthBar;
 let currentPlayerHealth = basicHealthBar;
 let hasBonusLife = true;
 let battleLog = [];
+let lastLoggedEntry;
 adjustHealthBars(basicHealthBar);
 
 function writeToLog(event, value, monsterHealth, playerHealth) {
@@ -70,7 +71,7 @@ function writeToLog(event, value, monsterHealth, playerHealth) {
 			break;
 		default:
 			break;
-	 }
+	}
 	// if (event === LOG_EVENT_PLAYER_ATTACK) {
 	// 	logEntry = {
 	// 		event: event,
@@ -216,7 +217,48 @@ function healPlayerHandler() {
 	attackAction();
 }
 function printLogHandler() {
-	console.log(battleLog);
+	//* while loop
+	// let finished = false;
+	// let randomNumbers = [];
+	// while (!finished) {
+	// 	const rndNumbers = Math.random();
+	// 	randomNumbers.push(rndNumbers);
+	// 	if (rndNumbers > 0.5) {
+	// 		finished = true;
+	// 		console.log(randomNumbers);
+	// 	}
+	// }
+	//! regular for loop
+	// for (let index = 0; index < battleLog.length; index++) {
+	// 	const element = battleLog[index];
+	// 	console.log(element);
+	// }
+	// let i = 0;
+
+	//! for of loop
+	// for (const logEntry of battleLog) {
+	// 	console.log(`#${i}`);
+
+	//! for in loop
+	// for (const key in logEntry) {
+	// 	console.log(`${key} => ${logEntry[key]}`);
+	// }
+	// i++;
+	let i = 0;
+	for (const logEntry of battleLog) {
+		if (
+			(!lastLoggedEntry && lastLoggedEntry !== 0) ||
+			lastLoggedEntry < i
+		) {
+			console.log(`#${i}`);
+			for (const key in logEntry) {
+				console.log(`${key} => ${logEntry[key]}`);
+			}
+			lastLoggedEntry = i;
+		}
+		i++;
+		break;
+	}
 }
 
 attackBtn.addEventListener("click", monsterAttackHandler);
