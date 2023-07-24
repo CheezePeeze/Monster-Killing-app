@@ -255,9 +255,9 @@ function printLogHandler() {
 				console.log(`${key} => ${logEntry[key]}`);
 			}
 			lastLoggedEntry = i;
+			break;
 		}
 		i++;
-		break;
 	}
 }
 
